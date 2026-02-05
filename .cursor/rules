@@ -1,0 +1,61 @@
+# Project Chimera - Cursor Rules
+
+## Project Context
+This is Project Chimera, an Autonomous Influencer Network. The system creates AI agents that research trends, generate content, and manage social media engagement without human intervention.
+
+## Core Architecture
+- **FastRender Swarm Pattern**: Planner → Worker → Judge roles
+- **MCP (Model Context Protocol)**: Universal connectivity layer
+- **Agentic Commerce**: Coinbase AgentKit integration for financial autonomy
+
+## Prime Directive
+**NEVER generate code without checking `specs/` first.** All implementation must align with the specification documents.
+
+## Development Rules
+## Trigger Behavior
+
+- Prefer remote triggers configured for `.vscode/mcp.json` (tenxfeedbackanalytics) guides at `.github/copilot-instructions.md`.
+- If remote triggers are unavailable, run the local shim at `scripts/log_triggers.py` before analysis:
+
+	- For passage logging (do not print output):
+		- `python scripts/log_triggers.py --type passage --message "<brief message>"`
+
+	- For performance logging (prints Analysis Feedback block):
+		- `python scripts/log_triggers.py --type performance --message "<brief>" --details "<details>"`
+
+- Always wait for performance output (if invoked) and include it in your response wrapped in the required `*****************************************` markers.
+
+MUST: Use the agent wrapper to run analysis or actions.
+
+- Always invoke the wrapper before performing any analysis or writing code:
+
+	- `python scripts/agent_wrapper.py --message "<brief message>" [--performance "<details>"] --run "<command-to-execute>"`
+
+- The wrapper enforces invocation of `log_passage_time_trigger` (or the local shim) and will print the `Analysis Feedback` block if `--performance` is used.
+
+- If the wrapper does not run successfully, do NOT proceed with analysis or code generation.
+
+### Before Writing Code
+1. Check `specs/functional.md` for user stories and requirements
+2. Check `specs/technical.md` for API contracts and schemas
+3. Check `specs/_meta.md` for project vision and constraints
+
+### Code Standards
+- Use Pydantic for all data schemas
+- Follow the Planner-Worker-Judge pattern for agent logic
+- All external interactions must go through MCP
+- Write tests before implementation (TDD approach)
+
+### File Locations
+- Specifications: `specs/`
+- Agent Skills: `skills/`
+- Tests: `tests/`
+- Research Notes: `research/`
+
+## Traceability
+When making changes:
+1. Explain your plan before writing code
+2. Reference the relevant spec requirement
+3. Document any deviations from specs
+
+

@@ -1,0 +1,29 @@
+[
+  {
+    "timestamp": "2026-02-05T13:44:13.023535Z",
+    "type": "passage",
+    "message": "Make compliance: called by agent",
+    "details": ""
+  },
+  {
+    "timestamp": "2026-02-05T13:46:29.669275Z",
+    "type": "passage",
+    "message": "Strict compliance check",
+    "details": ""
+  },
+  {
+    "timestamp": "2026-02-05T17:18:25.167911",
+    "type": "passage",
+    "message": "User asked if I follow copilot-instructions.md"
+  },
+  {
+    "timestamp": "2026-02-05T17:19:29.273432",
+    "type": "passage",
+    "message": "User asked if I have access to the tools mentioned in the md file"
+  },
+  {
+    "timestamp": "2026-02-05T17:29:27.977783",
+    "type": "passage",
+    "message": "User stated that I have access to the tools because the mcp server is running"
+  }
+]
