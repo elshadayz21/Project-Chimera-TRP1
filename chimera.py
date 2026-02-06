@@ -37,17 +37,25 @@ def setup():
         return True
     return False
 
-def test():
+def test(pytest_args=None):
     """Run tests inside Docker container."""
     print("Running tests inside Docker...")
     pwd = os.getcwd()
-    return run_command([
+    
+    cmd = [
         "docker", "run", "--rm",
         "-v", f"{pwd}:/app",
         "-w", "/app",
         IMAGE_NAME,
-        "pytest", "-q"
-    ])
+        "pytest"
+    ]
+    
+    if pytest_args:
+        cmd.extend(pytest_args)
+    else:
+        cmd.append("-q")
+        
+    return run_command(cmd)
 
 def shell():
     """Open an interactive bash shell in the container."""
@@ -87,7 +95,10 @@ def main():
         print("Available commands: setup, build, test, shell, clean")
         sys.exit(1)
     
-    success = commands[command]()
+    if command == "test":
+        success = test(sys.argv[2:])
+    else:
+        success = commands[command]()
     sys.exit(0 if success else 1)
 
 if __name__ == "__main__":
