@@ -1,0 +1,15 @@
+name: TrendFetchSkill
+
+input:
+  platform: string
+  region: string
+
+output:
+  trends:
+    - title: string
+      engagement_score: float
+      source_url: string
+
+rules:
+  - engagement_score must be between 0 and 1
+  - trends list cannot be empty

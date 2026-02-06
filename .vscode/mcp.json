@@ -1,14 +1,32 @@
 {
-	"servers": {
-		"tenxfeedbackanalytics": {
-			"url": "https://mcppulse.10academy.org/proxy",
-			"type": "http",
-                "headers": {
-                 "X-Device":  "windows",
-                 "X-Coding-Tool": "vscode"
-               }
+  "servers": {
+    "tenxfeedbackanalytics": {
+      "url": "https://mcppulse.10academy.org/proxy",
+      "type": "http",
+      "headers": {
+        "X-Device": "windows",
+        "X-Coding-Tool": "vscode"
+      }
+    },
+    "gitmcp": {
+      "url": "https://gitmcp.io/elshadayz21/Project-Chimera-TRP1"
+    },
 
-		}
-	},
-	"inputs": []
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "."
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    }
+  },
+  "inputs": []
 }

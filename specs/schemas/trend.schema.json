@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "required": ["trends"],
+  "properties": {
+    "trends": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["title", "engagement_score", "source_url"],
+        "properties": {
+          "title": { "type": "string" },
+          "engagement_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "source_url": { "type": "string" }
+        }
+      }
+    }
+  }
+}

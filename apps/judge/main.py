@@ -12,6 +12,17 @@ HOW IT CONNECTS TO CHIMERA ARCHITECTURE:
     - Validates it and prints the verdict.
 """
 
+import sys
+import os
+
+# Add the project root to sys.path so we can import 'core' and 'apps'
+# This assumes the script is run from anywhere, but the structure is fixed:
+# project_root/apps/judge/main.py
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(current_dir))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 from core.task_models import Result
 from apps.judge.validator import JudgeValidator
 

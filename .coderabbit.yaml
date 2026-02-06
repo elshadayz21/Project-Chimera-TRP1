@@ -1,0 +1,44 @@
+# CodeRabbit (simulated) review configuration
+# This file instructs the AI/code-review tool what checks to run on each PR/push.
+
+version: 1
+review:
+  enabled: true
+  on: [push, pull_request]
+  run:
+    - name: Spec alignment
+      description: "Verify code aligns with repository specs and README contracts"
+      command: |
+        python3 scripts/spec_check.py
+        # Ensure tests are runnable
+        pytest -q || true
+
+    - name: Static analysis
+      description: "Run linters and type checks to catch common issues"
+      command: |
+        ruff --select E,F || true
+        mypy || true
+
+    - name: Security scan
+      description: "Flag insecure patterns (hard-coded secrets, insecure calls)."
+      command: |
+        # Basic heuristic checks
+        grep -R --line-number "ghp_\|PASSWORD\|SECRET\|api_key" || true
+
+  checks:
+    - id: spec-alignment
+      type: policy
+      description: "Ensure code implements or matches specs in specs/technical.md and skills READMEs."
+      severity: high
+
+    - id: security-vulns
+      type: policy
+      description: "Flag insecure patterns and dependency vulnerabilities. Recommend running a dedicated scanner for production use."
+      severity: high
+
+  report:
+    format: markdown
+    summary: |
+      - Run `Spec alignment` to ensure implementation matches the spec and skill contracts.
+      - Run `Static analysis` (ruff/mypy) to catch errors early.
+      - Run `Security scan` to detect hard-coded secrets and obvious insecure code patterns.

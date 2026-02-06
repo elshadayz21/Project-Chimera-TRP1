@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run with trigger (PowerShell)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\command_with_trigger.ps1",
+        "--",
+        "${input:commandToRun}"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run with trigger (Batch)",
+      "type": "shell",
+      "command": "${workspaceFolder}\\scripts\\command_with_trigger.bat ${input:commandToRun}",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "commandToRun",
+      "type": "promptString",
+      "description": "Command to run through trigger wrapper (e.g. pytest -q)",
+      "default": "echo hello"
+    }
+  ]
+}
